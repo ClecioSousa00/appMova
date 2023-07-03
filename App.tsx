@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ThemeProvider } from 'styled-components/native'
+import { StatusBar } from 'expo-status-bar'
+import { useColorScheme } from 'react-native'
+import {
+  useFonts,
+  Urbanist_500Medium,
+  Urbanist_700Bold,
+} from '@expo-google-fonts/urbanist'
+import theme from './src/theme'
+import { Home } from './src/screens/Home'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const deviceTheme = useColorScheme()
+  const [fonts] = useFonts({
+    Urbanist_500Medium,
+    Urbanist_700Bold,
+  })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const userTheme = deviceTheme ? theme[deviceTheme] : theme.dark
+  if (!fonts) {
+    return
+  }
+
+  return (
+    <ThemeProvider theme={userTheme}>
+      <StatusBar style="auto" backgroundColor="transparent" translucent />
+      <Home />
+    </ThemeProvider>
+  )
+}
