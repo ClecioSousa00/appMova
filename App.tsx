@@ -8,6 +8,7 @@ import {
 } from '@expo-google-fonts/urbanist'
 import theme from './src/theme'
 import { Home } from './src/screens/Home'
+import { Splash } from './src/screens/Splash'
 
 export default function App() {
   const deviceTheme = useColorScheme()
@@ -24,7 +25,8 @@ export default function App() {
   return (
     <ThemeProvider theme={userTheme}>
       <StatusBar style="auto" backgroundColor="transparent" translucent />
-      <Home />
+      {/* <Home /> */}
+      <Splash />
     </ThemeProvider>
   )
 }
