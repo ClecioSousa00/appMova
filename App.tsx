@@ -9,6 +9,7 @@ import {
 import theme from './src/theme'
 import { Home } from './src/screens/Home'
 import { Splash } from './src/screens/Splash'
+import { Routes } from './src/routes'
 
 export default function App() {
   const deviceTheme = useColorScheme()
@@ -17,16 +18,14 @@ export default function App() {
     Urbanist_700Bold,
   })
 
-  const userTheme = deviceTheme ? theme[deviceTheme] : theme.dark
+  // const userTheme = deviceTheme ? theme[deviceTheme] : theme.dark
   if (!fonts) {
     return
   }
-
   return (
-    <ThemeProvider theme={userTheme}>
+    <ThemeProvider theme={deviceTheme ? theme[deviceTheme] : theme.dark}>
       <StatusBar style="auto" backgroundColor="transparent" translucent />
-      {/* <Home /> */}
-      <Splash />
+      <Routes />
     </ThemeProvider>
   )
 }
