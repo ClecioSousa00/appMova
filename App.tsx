@@ -7,8 +7,6 @@ import {
   Urbanist_700Bold,
 } from '@expo-google-fonts/urbanist'
 import theme from './src/theme'
-import { Home } from './src/screens/Home'
-import { Splash } from './src/screens/Splash'
 import { Routes } from './src/routes'
 
 export default function App() {
