@@ -2,13 +2,30 @@ import * as S from './styles'
 import logo from '../../assets/logo-Mova.png'
 import { ButtonPlay } from '../../components/ButtonPlay'
 import { ButtonFavorite } from '../../components/ButtonFavorites'
-import banner from '../../assets/banner-blizzard.png'
+import { useState, useEffect } from 'react'
+import { axiosInstance } from '../../services/api/axiosInstance'
+
+import { DataMoviesProps } from '../../types/movieTypes'
 
 export const Home = () => {
+  const [data, setData] = useState<DataMoviesProps>({} as DataMoviesProps)
+
+  useEffect(() => {
+    const getData = async () => {
+      const response = await axiosInstance.get('/movie/now_playing')
+      setData(response.data.results[0])
+      console.log(data)
+    }
+    getData()
+  }, [])
+
   return (
     <>
       <S.ContainerView>
-        <S.Background source={banner} imageStyle={{ resizeMode: 'cover' }}>
+        <S.Background
+          source={{ uri: `https://image.tmdb.org/t/p/w500${data.poster_path}` }}
+          imageStyle={{ resizeMode: 'cover' }}
+        >
           <S.HighlightFilm>
             <S.Header>
               <S.Logo source={logo} />
@@ -18,7 +35,7 @@ export const Home = () => {
               </S.IconsContainer>
             </S.Header>
             <S.InfosMovie>
-              <S.TitleMovie>Dr. Strange 2</S.TitleMovie>
+              <S.TitleMovie>{data.title}</S.TitleMovie>
               <S.GenreMovie>
                 Action, Superhero, Science Fiction, ...
               </S.GenreMovie>

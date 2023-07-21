@@ -15,6 +15,7 @@ export const TabNavigation = () => {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: theme.COLORS.SECONDARY,
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           borderTopWidth: 0,
           backgroundColor: theme.COLORS.BACKGROUND,
@@ -24,31 +25,34 @@ export const TabNavigation = () => {
       }}
     >
       <Screen
-        name="Home"
+        name="home"
         component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home-sharp" size={size} color={color} />
           ),
+          tabBarLabel: 'Home',
         }}
       />
 
       <Screen
-        name="Explorar"
+        name="explore"
         component={Explore}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Feather name="search" size={size} color={color} />
           ),
+          tabBarLabel: 'Explore',
         }}
       />
       <Screen
-        name="Favoritos"
+        name="favorite"
         component={Favorites}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Feather name="heart" size={size} color={color} />
           ),
+          tabBarLabel: 'Favoritos',
         }}
       />
     </Navigator>
