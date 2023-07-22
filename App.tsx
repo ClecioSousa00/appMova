@@ -8,6 +8,7 @@ import {
 } from '@expo-google-fonts/urbanist'
 import theme from './src/theme'
 import { Routes } from './src/routes'
+import { Login } from './src/screens/Login'
 
 export default function App() {
   const deviceTheme = useColorScheme()
@@ -24,7 +25,7 @@ export default function App() {
     <ThemeProvider theme={deviceTheme ? theme[deviceTheme] : theme.dark}>
       <StatusBar style="light" backgroundColor="transparent" translucent />
       <SafeAreaView style={{ flex: 1 }}>
-        <Routes />
+        <Login />
       </SafeAreaView>
     </ThemeProvider>
   )
