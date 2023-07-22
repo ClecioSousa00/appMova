@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components/native'
 import { StatusBar } from 'expo-status-bar'
-import { useColorScheme } from 'react-native'
+import { SafeAreaView, useColorScheme } from 'react-native'
 import {
   useFonts,
   Urbanist_500Medium,
@@ -22,8 +22,10 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={deviceTheme ? theme[deviceTheme] : theme.dark}>
-      <StatusBar style="auto" backgroundColor="transparent" translucent />
-      <Routes />
+      <StatusBar style="light" backgroundColor="transparent" translucent />
+      <SafeAreaView style={{ flex: 1 }}>
+        <Routes />
+      </SafeAreaView>
     </ThemeProvider>
   )
 }
