@@ -15,3 +15,4 @@ export const Container = styled.View`
 export const Input = styled.TextInput`
   flex: 1;
 `
+export const ErrorMessage = styled.Text``
