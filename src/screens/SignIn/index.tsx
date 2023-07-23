@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from 'firebase/auth'
 import { auth } from '../../services/firebaseConfig'
 import * as S from './styles'
 // import { useState } from 'react'
@@ -11,6 +15,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigation } from '@react-navigation/native'
 import { AlreadyAccount } from '../../components/AlreadyAccount'
+import { StackType } from '../../routes/stack.routes'
+import React, { useState } from 'react'
 
 // type FormDataProps = {
 //   email: string
@@ -28,7 +34,7 @@ const CreateUserSchema = z.object({
 
 type CreateUserSchemaProps = z.infer<typeof CreateUserSchema>
 
-export const SignUp = () => {
+export const SignIn = () => {
   const {
     control,
     handleSubmit,
@@ -36,36 +42,41 @@ export const SignUp = () => {
   } = useForm<CreateUserSchemaProps>({
     resolver: zodResolver(CreateUserSchema),
   })
-  const navigation = useNavigation()
+  const [email, setEmail] = useState('')
+  const navigation = useNavigation<StackType>()
 
-  const handleSignUp = (data: CreateUserSchemaProps) => {
-    console.log(data)
-
-    createUserWithEmailAndPassword(auth, data.email, data.password)
+  const handleSignIn = (data: CreateUserSchemaProps) => {
+    signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user
         console.log(user)
+        setEmail(data.email)
         navigation.navigate('stackHome')
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code
-        if (errorCode === 'auth/email-already-in-use') {
-          console.log('este email já existe')
-        }
+        // if (errorCode === 'auth/email-already-in-use') {
+        //   console.log('este email já existe')
+        // }
         const errorMessage = error.message
-        console.log('erro no login: ', errorMessage)
-
-        // ..
+        console.log('erro ao entrar: ', errorMessage)
       })
+  }
+
+  // depois tenho que criar a mensagem de email enviado ao usuario
+  const handleForgotPassword = () => {
+    // sendPasswordResetEmail(auth, email)
+    //   .then(() => {
+    //     console.log('email enviado')
+    //   })
+    //   .catch((error) => console.log('erro ao enviar email', error))
   }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <S.Container>
         <S.Logo source={logo} />
-        <S.Title>Crie Sua Conta</S.Title>
+        <S.Title>Faça login na sua conta</S.Title>
         <InputLogin
           name="email"
           control={control}
@@ -83,13 +94,16 @@ export const SignUp = () => {
         >
           <S.Icon name="lock" />
         </InputLogin>
-        <S.Button activeOpacity={0.5} onPress={handleSubmit(handleSignUp)}>
-          <S.TextButton>inscrever-se</S.TextButton>
+        <S.Button activeOpacity={0.5} onPress={handleSubmit(handleSignIn)}>
+          <S.TextButton>Entrar</S.TextButton>
         </S.Button>
+        <S.ButtonForgotPassword onPress={() => handleForgotPassword}>
+          <S.TextForgotPassword>Esqueceu sua senha ?</S.TextForgotPassword>
+        </S.ButtonForgotPassword>
         <AlreadyAccount
-          text="Já tem uma conta?"
-          buttonText="Entrar"
-          routeName="signIn"
+          text="Não possui uma conta?"
+          buttonText="Cadastre-se"
+          routeName="signUp"
         />
       </S.Container>
     </TouchableWithoutFeedback>

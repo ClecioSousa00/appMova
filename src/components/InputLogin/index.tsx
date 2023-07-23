@@ -14,15 +14,13 @@ type InputLoginProps = {
 export const InputLogin = ({
   name,
   control,
-  error,
+  error = '',
   children,
   ...props
 }: InputLoginProps) => {
-  console.log('component input', error)
-
   return (
-    <>
-      <S.Container>
+    <S.Container>
+      <S.ContainerInput error={error}>
         {children}
         <Controller
           control={control}
@@ -31,8 +29,8 @@ export const InputLogin = ({
             <S.Input onChangeText={onChange} value={value} {...props} />
           )}
         />
-      </S.Container>
+      </S.ContainerInput>
       {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
-    </>
+    </S.Container>
   )
 }

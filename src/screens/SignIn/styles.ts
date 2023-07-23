@@ -21,6 +21,7 @@ export const Title = styled.Text`
   font-size: ${RFValue(32)}px;
   color: ${({ theme }) => theme.COLORS.LIGHT};
   margin-bottom: 44px;
+  text-align: center;
 `
 export const Icon = styled(MaterialIcons)`
   color: ${({ theme }) => theme.COLORS.INACTIVE};
@@ -39,5 +40,14 @@ export const TextButton = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.COLORS.LIGHT};
   font-family: ${({ theme }) => theme.FONTS.BOLD};
+  font-size: ${RFValue(16)}px;
+`
+export const ButtonForgotPassword = styled.TouchableOpacity`
+  margin-top: 30px;
+`
+
+export const TextForgotPassword = styled.Text`
+  color: ${({ theme }) => theme.COLORS.SECONDARY};
+  font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   font-size: ${RFValue(16)}px;
 `

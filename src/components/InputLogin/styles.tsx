@@ -1,6 +1,12 @@
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 
-export const Container = styled.View`
+type ErrorProps = {
+  error: string
+}
+
+export const Container = styled.View``
+
+export const ContainerInput = styled.View<ErrorProps>`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -10,9 +16,19 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_lIGHT};
   border-radius: 10px;
   margin-bottom: 20px;
+
+  ${({ error }) =>
+    error &&
+    css`
+      border: 1px solid ${({ theme }) => theme.COLORS.SECONDARY};
+      margin-bottom: 10px;
+    `};
 `
 
 export const Input = styled.TextInput`
   flex: 1;
 `
-export const ErrorMessage = styled.Text``
+export const ErrorMessage = styled.Text`
+  color: ${({ theme }) => theme.COLORS.SECONDARY};
+  margin-bottom: 20px;
+`

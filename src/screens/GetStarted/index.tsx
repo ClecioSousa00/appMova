@@ -1,7 +1,10 @@
 import * as S from './styles'
 import bgGetStarted from '../../assets/bg-getStarted.png'
 import { ButtonGetStart } from '../../components/ButtonGetStart'
+import { useNavigation } from '@react-navigation/native'
+import { StackType } from '../../routes/stack.routes'
 export const GetStarted = () => {
+  const navigation = useNavigation<StackType>()
   return (
     <S.ImageBackground
       source={bgGetStarted}
@@ -21,7 +24,7 @@ export const GetStarted = () => {
           <S.Circle />
           <S.Circle />
         </S.ContainerIcons>
-        <ButtonGetStart />
+        <ButtonGetStart onPress={() => navigation.navigate('signUp')} />
       </S.Container>
     </S.ImageBackground>
   )
