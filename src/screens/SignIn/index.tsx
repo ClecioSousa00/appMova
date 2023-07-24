@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../services/firebaseConfig'
 import * as S from './styles'
-import { TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
 
 import { AlreadyAccount } from '../../components/AlreadyAccount'
 import { CreateUserSchemaProps, Form } from '../../components/Form'
@@ -21,6 +21,17 @@ export const SignIn = () => {
       })
       .catch((error) => {
         const errorCode = error.code
+        console.log('error code:::', errorCode)
+
+        if (errorCode === 'auth/user-not-found') {
+          Alert.alert(
+            'Aviso',
+            'Usuário não encontrado. Verifique se o e-mail está cadastrado.',
+          )
+        }
+        if (errorCode === 'auth/wrong-password') {
+          Alert.alert('Aviso', 'Senha incorreta. Verifique a senha digitada.')
+        }
         const errorMessage = error.message
         console.log('erro ao entrar: ', errorMessage)
       })

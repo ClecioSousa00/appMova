@@ -22,11 +22,12 @@ export const ContainerInput = styled.View<ErrorProps>`
     css`
       border: 1px solid ${({ theme }) => theme.COLORS.SECONDARY};
       margin-bottom: 0px;
+      background-color: ${({ theme }) => theme.COLORS.INPUTERROR};
     `};
 `
 
 export const Input = styled.TextInput`
-  flex: 1;
+  width: 80%;
 `
 export const ErrorMessage = styled.Text`
   color: ${({ theme }) => theme.COLORS.SECONDARY};

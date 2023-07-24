@@ -1,15 +1,15 @@
 import * as S from './styles'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../services/firebaseConfig'
-import { TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
 
 import { AlreadyAccount } from '../../components/AlreadyAccount'
 import { CreateUserSchemaProps, Form } from '../../components/Form'
+import { useState } from 'react'
+import { FlagMessage } from '../../components/FlagMessage'
 
 export const SignUp = () => {
   const handleSign = (data: CreateUserSchemaProps) => {
-    console.log(data)
-
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user
@@ -17,11 +17,16 @@ export const SignUp = () => {
       })
       .catch((error) => {
         const errorCode = error.code
+        console.log('error code: ', errorCode)
+
         if (errorCode === 'auth/email-already-in-use') {
-          console.log('este email já existe')
+          Alert.alert(
+            'Aviso',
+            'Já existi uma conta com o endereço de email fornecido.',
+          )
         }
         const errorMessage = error.message
-        console.log('erro no login: ', errorMessage)
+        console.log('erro ao criar usuário ', errorMessage)
       })
   }
 

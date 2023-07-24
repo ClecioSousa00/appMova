@@ -7,6 +7,7 @@ export default {
     LIGHT: '#FAFAFA',
     INACTIVE: '#9E9E9E',
     TEXT: '#000',
+    INPUTERROR: '#FDECEE',
   },
   FONTS: {
     MEDIUM: 'Urbanist_500Medium',

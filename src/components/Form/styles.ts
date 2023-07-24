@@ -1,6 +1,10 @@
 import { RFValue } from 'react-native-responsive-fontsize'
-import styled from 'styled-components/native'
-import { MaterialIcons } from '@expo/vector-icons'
+import styled, { css } from 'styled-components/native'
+import { MaterialIcons, Ionicons } from '@expo/vector-icons'
+
+type Error = {
+  error: string
+}
 
 export const Container = styled.View`
   width: 100%;
@@ -20,9 +24,14 @@ export const Title = styled.Text`
   margin-bottom: 44px;
   text-align: center;
 `
-export const Icon = styled(MaterialIcons)`
+export const Icon = styled(MaterialIcons)<Error>`
   color: ${({ theme }) => theme.COLORS.INACTIVE};
   font-size: ${RFValue(18)}px;
+  ${({ error }) =>
+    error &&
+    css`
+      color: ${({ theme }) => theme.COLORS.SECONDARY};
+    `};
 `
 
 export const Button = styled.TouchableOpacity`
@@ -38,4 +47,17 @@ export const TextButton = styled.Text`
   color: ${({ theme }) => theme.COLORS.LIGHT};
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   font-size: ${RFValue(16)}px;
+`
+export const ButtonEye = styled.TouchableOpacity`
+  position: absolute;
+  right: 18px;
+`
+export const IconEye = styled(Ionicons)<Error>`
+  color: ${({ theme }) => theme.COLORS.INACTIVE};
+  font-size: ${RFValue(18)}px;
+  ${({ error }) =>
+    error &&
+    css`
+      color: ${({ theme }) => theme.COLORS.SECONDARY};
+    `};
 `

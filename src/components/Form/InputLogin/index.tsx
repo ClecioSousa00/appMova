@@ -26,7 +26,7 @@ export const InputLogin = ({
           control={control}
           name={name}
           render={({ field: { onChange, value } }) => (
-            <S.Input onChangeText={onChange} value={value} {...props} />
+            <S.Input onChangeText={onChange} value={value} {...props}></S.Input>
           )}
         />
       </S.ContainerInput>

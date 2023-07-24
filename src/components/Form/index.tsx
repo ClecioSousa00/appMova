@@ -3,8 +3,9 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 // import { Keyboard, TouchableWithoutFeedback } from 'react-native'
-import { InputLogin } from '../InputLogin'
+import { InputLogin } from './InputLogin'
 import logo from '../../assets/logo-Mova.png'
+import { useState } from 'react'
 
 const CreateUserSchema = z.object({
   email: z
@@ -32,6 +33,9 @@ export const Form = ({ title, handleSign, textButton }: FormProps) => {
     resolver: zodResolver(CreateUserSchema),
   })
 
+  const [hidePassword, setHidePassword] = useState(true)
+  console.log('error', errors.password)
+
   return (
     <S.Container>
       <S.Logo source={logo} />
@@ -42,16 +46,23 @@ export const Form = ({ title, handleSign, textButton }: FormProps) => {
         error={errors.email && errors.email?.message}
         placeholder="Email"
       >
-        <S.Icon name="email" />
+        <S.Icon name="email" error={errors.email} />
       </InputLogin>
       <InputLogin
         name="password"
         control={control}
         error={errors.password && errors.password?.message}
         placeholder="Password"
-        secureTextEntry={true}
+        secureTextEntry={hidePassword}
       >
-        <S.Icon name="lock" />
+        <S.Icon name="lock" error={errors.password} />
+        <S.ButtonEye onPress={() => setHidePassword(!hidePassword)}>
+          {hidePassword ? (
+            <S.IconEye name="eye-off" error={errors.password} />
+          ) : (
+            <S.IconEye name="eye" />
+          )}
+        </S.ButtonEye>
       </InputLogin>
       <S.Button activeOpacity={0.5} onPress={handleSubmit(handleSign)}>
         <S.TextButton>{textButton}</S.TextButton>
