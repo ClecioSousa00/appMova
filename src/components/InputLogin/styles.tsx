@@ -21,7 +21,7 @@ export const ContainerInput = styled.View<ErrorProps>`
     error &&
     css`
       border: 1px solid ${({ theme }) => theme.COLORS.SECONDARY};
-      margin-bottom: 10px;
+      margin-bottom: 0px;
     `};
 `
 
@@ -30,5 +30,5 @@ export const Input = styled.TextInput`
 `
 export const ErrorMessage = styled.Text`
   color: ${({ theme }) => theme.COLORS.SECONDARY};
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `

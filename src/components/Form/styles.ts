@@ -3,11 +3,8 @@ import styled from 'styled-components/native'
 import { MaterialIcons } from '@expo/vector-icons'
 
 export const Container = styled.View`
-  flex: 1;
+  width: 100%;
   align-items: center;
-  justify-content: flex-end;
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
-  padding: 0 24px 50px;
 `
 
 export const Logo = styled.Image`
@@ -40,14 +37,5 @@ export const TextButton = styled.Text`
   text-align: center;
   color: ${({ theme }) => theme.COLORS.LIGHT};
   font-family: ${({ theme }) => theme.FONTS.BOLD};
-  font-size: ${RFValue(16)}px;
-`
-export const ButtonForgotPassword = styled.TouchableOpacity`
-  margin-top: 30px;
-`
-
-export const TextForgotPassword = styled.Text`
-  color: ${({ theme }) => theme.COLORS.SECONDARY};
-  font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   font-size: ${RFValue(16)}px;
 `

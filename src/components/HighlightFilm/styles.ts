@@ -1,12 +1,13 @@
 import styled from 'styled-components/native'
 import { Feather } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { LinearGradient } from 'expo-linear-gradient'
 
 export const Background = styled.ImageBackground`
   height: 400px;
 `
 
-export const HighlightFilm = styled.View`
+export const HighlightFilm = styled(LinearGradient)`
   height: 100%;
   padding: 80px 30px 24px;
   justify-content: space-between;

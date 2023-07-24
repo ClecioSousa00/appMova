@@ -6,6 +6,7 @@ export default {
     DARK: '#424242',
     LIGHT: '#FAFAFA',
     INACTIVE: '#9E9E9E',
+    TEXT: '#fff',
   },
   FONTS: {
     MEDIUM: 'Urbanist_500Medium',

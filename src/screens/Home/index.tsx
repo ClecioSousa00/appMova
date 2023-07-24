@@ -8,6 +8,8 @@ export const Home = () => {
   const { data } = useAxios('/trending/movie/week')
 
   if (!data.length) {
+    console.log('splash da home')
+
     return <Splash />
   }
   const randomIndex = Math.floor(Math.random() * data.length - 1)

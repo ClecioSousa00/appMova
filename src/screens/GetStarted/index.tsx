@@ -24,7 +24,7 @@ export const GetStarted = () => {
           <S.Circle />
           <S.Circle />
         </S.ContainerIcons>
-        <ButtonGetStart onPress={() => navigation.navigate('signUp')} />
+        <ButtonGetStart onPress={() => navigation.navigate('signIn')} />
       </S.Container>
     </S.ImageBackground>
   )

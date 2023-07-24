@@ -22,13 +22,9 @@ export const AlreadyAccount = ({
     }
   }
   return (
-    <S.Container>
+    <S.ButtonSign onPress={handleNavigate} activeOpacity={0.7}>
       <S.AccountMessage>{text}</S.AccountMessage>
-      <S.ButtonSign onPress={handleNavigate}>
-        <S.ButtonSignText>{buttonText}</S.ButtonSignText>
-      </S.ButtonSign>
-    </S.Container>
+      <S.ButtonSignText>{buttonText}</S.ButtonSignText>
+    </S.ButtonSign>
   )
 }
-// não tem uma conta cadastre-se//
-// Já tem uma conta? Entrar

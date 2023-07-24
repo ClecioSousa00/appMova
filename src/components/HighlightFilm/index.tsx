@@ -15,9 +15,9 @@ export const HighlightFilm = ({ data }: HighlightFilmProps) => {
       source={{
         uri: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
       }}
-      imageStyle={{ resizeMode: 'cover', opacity: 0.5 }}
+      imageStyle={{ resizeMode: 'cover' }}
     >
-      <S.HighlightFilm>
+      <S.HighlightFilm colors={['rgba(24, 26, 32, 0)', '#181a20']}>
         <S.Header>
           <S.Logo source={logo} />
           <S.IconsContainer>
