@@ -5,8 +5,13 @@ import { TouchableWithoutFeedback, Keyboard } from 'react-native'
 
 import { AlreadyAccount } from '../../components/AlreadyAccount'
 import { CreateUserSchemaProps, Form } from '../../components/Form'
+import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { StackAuthType } from '../../routes/authRoutes'
 
 export const SignIn = () => {
+  const navigation = useNavigation<StackAuthType>()
+
   const handleSign = (data: CreateUserSchemaProps) => {
     console.log(data)
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -21,15 +26,6 @@ export const SignIn = () => {
       })
   }
 
-  // depois tenho que criar a mensagem de email enviado ao usuario
-  const handleForgotPassword = () => {
-    // sendPasswordResetEmail(auth, email)
-    //   .then(() => {
-    //     console.log('email enviado')
-    //   })
-    //   .catch((error) => console.log('erro ao enviar email', error))
-  }
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <S.Container>
@@ -38,7 +34,9 @@ export const SignIn = () => {
           textButton="Entrar"
           handleSign={handleSign}
         />
-        <S.ButtonForgotPassword onPress={() => handleForgotPassword}>
+        <S.ButtonForgotPassword
+          onPress={() => navigation.navigate('forgotPassword')}
+        >
           <S.TextForgotPassword>Esqueceu sua senha ?</S.TextForgotPassword>
         </S.ButtonForgotPassword>
         <AlreadyAccount

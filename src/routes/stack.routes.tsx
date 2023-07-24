@@ -11,8 +11,8 @@ import { SignIn } from '../screens/SignIn'
 const { Screen, Navigator } = createNativeStackNavigator()
 
 type StackNavigationProps = {
-  signUp: undefined
-  signIn: undefined
+  // signUp: undefined
+  // signIn: undefined
   stackHome: undefined
 }
 
