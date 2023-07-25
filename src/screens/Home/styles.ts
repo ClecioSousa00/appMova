@@ -4,3 +4,4 @@ export const ContainerView = styled.View`
   flex: 1;
   background: ${({ theme }) => theme.COLORS.BACKGROUND};
 `
+export const ScrollContainer = styled.ScrollView``

@@ -1,17 +1,25 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
+import {
+  FIREBASE_APY_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGEBUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID,
+} from '@env'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDPLNJ782JrgK0sY4iZiWaf6tduBljc1Us',
-  authDomain: 'mova-44174.firebaseapp.com',
-  projectId: 'mova-44174',
-  storageBucket: 'mova-44174.appspot.com',
-  messagingSenderId: '548157305102',
-  appId: '1:548157305102:web:fb4677aaefcd404226275f',
+  apiKey: FIREBASE_APY_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGEBUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+  appId: FIREBASE_APP_ID,
 }
 
 // Initialize Firebase

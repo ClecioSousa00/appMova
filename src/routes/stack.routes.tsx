@@ -5,15 +5,15 @@ import {
 
 import { TabNavigation } from './tabs.routes'
 import { MovieInfos } from '../screens/MovieInfos'
-import { GetStarted } from '../screens/GetStarted'
-import { SignUp } from '../screens/SignUp'
-import { SignIn } from '../screens/SignIn'
+
+import { AllMovieSection } from '../screens/AllMovieSection'
 const { Screen, Navigator } = createNativeStackNavigator()
 
 type StackNavigationProps = {
   // signUp: undefined
   // signIn: undefined
   stackHome: undefined
+  allMoviesSection: { title: string; url: string }
 }
 
 export type StackType = NativeStackNavigationProp<StackNavigationProps>
@@ -26,6 +26,7 @@ export const StackNavigation = () => {
       <Screen name="signIn" component={SignIn} /> */}
       <Screen name="stackHome" component={TabNavigation} />
       <Screen name="movieScreen" component={MovieInfos} />
+      <Screen name="allMoviesSection" component={AllMovieSection} />
     </Navigator>
   )
 }
