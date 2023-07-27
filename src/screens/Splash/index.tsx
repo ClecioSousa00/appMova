@@ -1,20 +1,13 @@
 import * as S from './styles'
 import logo from '../../assets/logo-Mova.png'
-import LottieView from 'lottie-react-native'
+import { LoadingAnimation } from '../../components/LoadingAnimation'
 
 export const Splash = () => {
   return (
     <S.Container>
       <S.Content>
         <S.Logo source={logo} />
-        <LottieView
-          source={require('../../assets/loading.json')}
-          autoPlay={true}
-          style={{
-            width: 150,
-            height: 150,
-          }}
-        />
+        <LoadingAnimation />
       </S.Content>
     </S.Container>
   )

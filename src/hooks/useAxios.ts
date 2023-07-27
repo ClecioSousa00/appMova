@@ -5,11 +5,9 @@ import { useState, useEffect } from 'react'
 export const useAxios = (url: string) => {
   const [data, setData] = useState<DataMoviesProps[]>([])
   const [loading, setLoading] = useState(true)
-
+  console.log('hook axios', loading)
   useEffect(() => {
     const getData = async () => {
-      console.log('hook axios')
-
       try {
         const response = await axiosInstance.get(url)
         const data: DataMoviesProps[] = response.data.results.map(
@@ -30,6 +28,7 @@ export const useAxios = (url: string) => {
     getData()
   }, [url])
 
+  console.log('hook axios', loading)
   return {
     data,
     loading,

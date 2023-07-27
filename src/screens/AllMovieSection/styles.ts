@@ -5,14 +5,16 @@ import { RFValue } from 'react-native-responsive-fontsize'
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
-  padding: 80px 24px 0;
+  padding: 80px 18px 0;
   align-items: center;
 `
 
 export const Header = styled.View`
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 40px;
 `
 export const ButtonBack = styled.TouchableOpacity``
 
