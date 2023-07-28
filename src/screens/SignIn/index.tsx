@@ -5,14 +5,16 @@ import { TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
 
 import { AlreadyAccount } from '../../components/AlreadyAccount'
 import { CreateUserSchemaProps, Form } from '../../components/Form'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackAuthType } from '../../routes/authRoutes'
 
 export const SignIn = () => {
   const navigation = useNavigation<StackAuthType>()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSign = (data: CreateUserSchemaProps) => {
+    setIsLoading(true)
     console.log(data)
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
@@ -35,6 +37,7 @@ export const SignIn = () => {
         const errorMessage = error.message
         console.log('erro ao entrar: ', errorMessage)
       })
+    setIsLoading(false)
   }
 
   return (
@@ -43,6 +46,7 @@ export const SignIn = () => {
         <Form
           title="Faça login na sua conta"
           textButton="Entrar"
+          loading={isLoading}
           handleSign={handleSign}
         />
         <S.ButtonForgotPassword

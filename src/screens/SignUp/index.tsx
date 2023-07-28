@@ -6,10 +6,11 @@ import { TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
 import { AlreadyAccount } from '../../components/AlreadyAccount'
 import { CreateUserSchemaProps, Form } from '../../components/Form'
 import { useState } from 'react'
-import { FlagMessage } from '../../components/FlagMessage'
 
 export const SignUp = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const handleSign = (data: CreateUserSchemaProps) => {
+    setIsLoading(true)
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         const user = userCredential.user
@@ -22,12 +23,13 @@ export const SignUp = () => {
         if (errorCode === 'auth/email-already-in-use') {
           Alert.alert(
             'Aviso',
-            'Já existi uma conta com o endereço de email fornecido.',
+            'Já existe uma conta com o endereço de email fornecido.',
           )
         }
         const errorMessage = error.message
         console.log('erro ao criar usuário ', errorMessage)
       })
+    setIsLoading(false)
   }
 
   return (
@@ -36,6 +38,7 @@ export const SignUp = () => {
         <Form
           title="Criar Conta"
           textButton="Inscrever-se"
+          loading={isLoading}
           handleSign={handleSign}
         />
 

@@ -5,9 +5,8 @@ import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: center;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
-  padding: 0 24px 50px;
+  padding: 56px 24px;
 `
 export const ButtonBack = styled.TouchableOpacity`
   align-self: flex-start;

@@ -11,7 +11,10 @@ type MoviesListProps = {
 }
 
 export const MoviesList = ({ getMoreMovies, data }: MoviesListProps) => {
-  const renderItem = useCallback(({ item }) => <CardMovie data={item} />, [])
+  const renderItem = useCallback(
+    ({ item }: { item: DataMoviesProps }) => <CardMovie data={item} />,
+    [],
+  )
   return (
     <S.ListMovie
       data={data}

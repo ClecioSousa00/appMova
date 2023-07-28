@@ -1,10 +1,10 @@
 import * as S from './styles'
 import bgGetStarted from '../../assets/bg-getStarted.png'
-import { ButtonGetStart } from '../../components/ButtonGetStart'
 import { useNavigation } from '@react-navigation/native'
-import { StackType } from '../../routes/stack.routes'
+import { StackAuthType } from '../../routes/authRoutes'
+import { SignButton } from '../../components/SignButton'
 export const GetStarted = () => {
-  const navigation = useNavigation<StackType>()
+  const navigation = useNavigation<StackAuthType>()
   return (
     <S.ImageBackground
       source={bgGetStarted}
@@ -24,7 +24,10 @@ export const GetStarted = () => {
           <S.Circle />
           <S.Circle />
         </S.ContainerIcons>
-        <ButtonGetStart onPress={() => navigation.navigate('signIn')} />
+        <SignButton
+          text="Iniciar"
+          onPress={() => navigation.navigate('signIn')}
+        />
       </S.Container>
     </S.ImageBackground>
   )

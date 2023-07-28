@@ -44,10 +44,12 @@ export const AllMovieSection = () => {
   return (
     <S.Container>
       <S.Header>
-        <S.ButtonBack onPress={() => navigation.navigate('home')}>
-          <S.Icon name="arrow-left" />
-        </S.ButtonBack>
-        <S.Title>{title}</S.Title>
+        <S.ContainerTitle>
+          <S.ButtonBack onPress={() => navigation.navigate('home')}>
+            <S.Icon name="arrow-left" />
+          </S.ButtonBack>
+          <S.Title>{title}</S.Title>
+        </S.ContainerTitle>
         <S.Icon name="search" />
       </S.Header>
       <MoviesList getMoreMovies={GetMoreMovies} data={dataMovies} />

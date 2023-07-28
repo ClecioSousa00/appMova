@@ -3,7 +3,9 @@ import styled from 'styled-components/native'
 
 export const Button = styled.TouchableOpacity`
   width: 100%;
-  padding: 18px 0;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
   border-radius: 30px;
   background-color: ${({ theme }) => theme.COLORS.SECONDARY};
 `

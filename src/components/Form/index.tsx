@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { InputLogin } from './InputLogin'
 import logo from '../../assets/logo-Mova.png'
 import { useState } from 'react'
+import { SignButton } from '../SignButton'
 
 const CreateUserSchema = z.object({
   email: z
@@ -21,10 +22,11 @@ export type CreateUserSchemaProps = z.infer<typeof CreateUserSchema>
 type FormProps = {
   textButton: string
   title: string
+  loading: boolean
   handleSign: (data: CreateUserSchemaProps) => void
 }
 
-export const Form = ({ title, handleSign, textButton }: FormProps) => {
+export const Form = ({ loading, title, handleSign, textButton }: FormProps) => {
   const {
     control,
     handleSubmit,
@@ -64,9 +66,31 @@ export const Form = ({ title, handleSign, textButton }: FormProps) => {
           )}
         </S.ButtonEye>
       </InputLogin>
-      <S.Button activeOpacity={0.5} onPress={handleSubmit(handleSign)}>
+      <SignButton
+        text={textButton}
+        onPress={handleSubmit(handleSign)}
+        loading={loading}
+        style={{
+          shadowOffset: { width: -2, height: 4 },
+          shadowColor: '#E21221',
+          shadowOpacity: 0.9,
+          shadowRadius: 3,
+          elevation: 9,
+        }}
+      />
+      {/* <S.Button
+        style={{
+          shadowOffset: { width: -2, height: 4 },
+          shadowColor: '#E21221',
+          shadowOpacity: 0.9,
+          shadowRadius: 3,
+          elevation: 9,
+        }}
+        activeOpacity={0.5}
+        onPress={handleSubmit(handleSign)}
+      >
         <S.TextButton>{textButton}</S.TextButton>
-      </S.Button>
+      </S.Button> */}
     </S.Container>
   )
 }
