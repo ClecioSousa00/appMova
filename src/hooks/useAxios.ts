@@ -5,7 +5,15 @@ import { useState, useEffect } from 'react'
 export const useAxios = (url: string) => {
   const [data, setData] = useState<DataMoviesProps[]>([])
   const [loading, setLoading] = useState(false)
-  console.log('hook axios', loading)
+  console.log(
+    '=========================================================================================',
+  )
+  console.log('hook use axios url', url)
+  console.log(
+    '=========================================================================================',
+  )
+  console.log('hook use axios loading', loading)
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true)
@@ -29,7 +37,6 @@ export const useAxios = (url: string) => {
     getData()
   }, [url])
 
-  console.log('hook axios', loading)
   return {
     data,
     loading,

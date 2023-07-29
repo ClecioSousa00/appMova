@@ -17,15 +17,12 @@ export const Header = styled.View`
   margin-bottom: 40px;
 `
 export const ButtonBack = styled.TouchableOpacity``
-export const ContainerTitle = styled.View`
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-`
+
+export const ButtonSearch = styled.TouchableOpacity``
 
 export const Icon = styled(Feather)`
   font-size: ${RFValue(24)}px;
-  color: ${({ theme }) => theme.COLORS.LIGHT};
+  color: ${({ theme }) => theme.COLORS.TEXT};
 `
 
 export const Title = styled.Text`

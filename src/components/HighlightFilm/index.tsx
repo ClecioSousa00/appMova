@@ -4,12 +4,16 @@ import { ButtonPlay } from '../ButtonPlay'
 import { ButtonFavorite } from '../ButtonFavorites'
 
 import { DataMoviesProps } from '../../types/movieTypes'
+import { useNavigation } from '@react-navigation/native'
+import { TabTypes } from '../../routes'
 
 type HighlightFilmProps = {
   data: DataMoviesProps
 }
 
 export const HighlightFilm = ({ data }: HighlightFilmProps) => {
+  const navigation = useNavigation<TabTypes>()
+
   return (
     <S.Background
       source={{
@@ -21,7 +25,9 @@ export const HighlightFilm = ({ data }: HighlightFilmProps) => {
         <S.Header>
           <S.Logo source={logo} />
           <S.IconsContainer>
-            <S.Icon name="search" />
+            <S.ButtonSearch onPress={() => navigation.navigate('explore')}>
+              <S.Icon name="search" />
+            </S.ButtonSearch>
             <S.Icon name="bell" />
           </S.IconsContainer>
         </S.Header>

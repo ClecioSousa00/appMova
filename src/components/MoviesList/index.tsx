@@ -1,9 +1,9 @@
 import { DataMoviesProps } from '../../types/movieTypes'
 import { CardMovie } from '../CardMovie'
-import { View } from 'react-native'
+import { ListRenderItemInfo, View } from 'react-native'
 import * as S from './styles'
 import { LoadingAnimation } from '../LoadingAnimation'
-import { useCallback } from 'react'
+// import { useCallback } from 'react'
 
 type MoviesListProps = {
   data: DataMoviesProps[]
@@ -11,10 +11,14 @@ type MoviesListProps = {
 }
 
 export const MoviesList = ({ getMoreMovies, data }: MoviesListProps) => {
-  const renderItem = useCallback(
-    ({ item }: { item: DataMoviesProps }) => <CardMovie data={item} />,
-    [],
-  )
+  // const renderItem = useCallback(
+  //   ({ item }: { item: DataMoviesProps }) => <CardMovie data={item} />,
+  //   [],
+  // )
+  function renderItem({ item }: ListRenderItemInfo<DataMoviesProps>) {
+    return <CardMovie data={item} />
+  }
+
   return (
     <S.ListMovie
       data={data}
@@ -22,10 +26,9 @@ export const MoviesList = ({ getMoreMovies, data }: MoviesListProps) => {
       ItemSeparatorComponent={() => <View style={{ marginBottom: 10 }} />}
       renderItem={renderItem}
       numColumns={2}
-      contentContainerStyle={{ paddingBottom: 40 }}
       showsVerticalScrollIndicator={false}
       onEndReached={getMoreMovies}
-      onEndReachedThreshold={0.2}
+      onEndReachedThreshold={0.1}
       ListFooterComponent={<LoadingAnimation />}
     />
   )

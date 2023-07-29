@@ -27,6 +27,7 @@ export const IconsContainer = styled.View`
   flex-direction: row;
   gap: 20px;
 `
+export const ButtonSearch = styled.Pressable``
 
 export const Icon = styled(Feather)`
   font-size: ${RFValue(24)}px;

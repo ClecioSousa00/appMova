@@ -36,7 +36,7 @@ export const Form = ({ loading, title, handleSign, textButton }: FormProps) => {
   })
 
   const [hidePassword, setHidePassword] = useState(true)
-  console.log('error', errors.password)
+  console.log('error da senha', errors.password)
 
   return (
     <S.Container>
