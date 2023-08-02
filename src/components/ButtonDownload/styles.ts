@@ -7,7 +7,7 @@ export const FavoriteButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 175px;
+  width: 170px;
   border-radius: 30px;
   border: 2px solid ${({ theme }) => theme.COLORS.SECONDARY};
 `

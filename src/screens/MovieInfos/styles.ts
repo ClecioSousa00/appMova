@@ -24,9 +24,8 @@ export const IconInfos = styled(Feather)`
   color: ${({ theme }) => theme.COLORS.TEXT};
 `
 
-export const ContainerInfos = styled.View`
-  padding: 30px 24px 0;
-  height: 100%;
+export const ContainerInfos = styled.ScrollView`
+  padding: 30px 20px 0;
 `
 
 export const ContentTitle = styled.View`
@@ -41,8 +40,11 @@ export const TitleMovie = styled.Text`
 `
 export const ContentSubtitle = styled.View`
   flex-direction: row;
-  gap: 12px;
-  margin-top: 8px;
+  justify-content: space-between;
+`
+export const ContentInfosSubtitle = styled.View`
+  flex-direction: row;
+  gap: 8px;
 `
 
 export const infosSubtitle = styled.Text`
@@ -57,4 +59,14 @@ export const ContainerButtons = styled.View`
   width: 100%;
   margin-top: 24px;
   gap: 8px;
+`
+export const GenresList = styled.View`
+  flex-direction: row;
+`
+export const Description = styled.Text`
+  font-family: ${({ theme }) => theme.FONTS.MEDIUM};
+  color: ${({ theme }) => theme.COLORS.TEXT};
+  font-size: ${RFValue(12)}px;
+  margin-top: 20px;
+  text-align: justify;
 `

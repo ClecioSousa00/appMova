@@ -14,7 +14,7 @@ type StackNavigationProps = {
   // signIn: undefined
   stackHome: undefined
   allMoviesSection: { title: string; url: string }
-  movieInfos: undefined
+  movieInfos: { id: number }
 }
 
 export type StackType = NativeStackNavigationProp<StackNavigationProps>

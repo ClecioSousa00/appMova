@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { axiosInstance } from '../services/api/axiosInstance'
 import { DataMoviesProps } from '../types/movieTypes'
 
@@ -12,6 +11,8 @@ export const useGetData = () => {
           title: item.title,
           poster_path: item.poster_path,
           vote_average: item.vote_average,
+          overview: item.overview,
+          release_date: item.release_date,
         }),
       )
       return data

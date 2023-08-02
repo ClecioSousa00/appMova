@@ -9,7 +9,7 @@ type MovieBannerProps = {
 export const MovieBanner = ({ urlImage, children }: MovieBannerProps) => {
   return (
     <S.Background
-      source={{ uri: urlImage }}
+      source={{ uri: `https://image.tmdb.org/t/p/w500${urlImage}` }}
       imageStyle={{ resizeMode: 'cover' }}
     >
       <S.HighlightFilm colors={['rgba(24, 26, 32, 0)', '#181a20']}>

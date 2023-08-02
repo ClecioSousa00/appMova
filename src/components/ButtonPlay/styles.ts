@@ -17,7 +17,7 @@ export const PlayButton = styled.TouchableOpacity<ButtonPlayProps>`
   ${({ variant }) =>
     variant &&
     css`
-      width: 175px;
+      width: 170px;
     `};
 `
 export const IconPlay = styled(AntDesign)`

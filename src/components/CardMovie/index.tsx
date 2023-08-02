@@ -15,7 +15,7 @@ export const CardMovie = ({ data }: CardMovieProps) => {
   return (
     <S.Container
       activeOpacity={0.7}
-      onPress={() => navigation.navigate('movieInfos')}
+      onPress={() => navigation.navigate('movieInfos', { id: data.id })}
     >
       <S.MovieImg
         style={{
