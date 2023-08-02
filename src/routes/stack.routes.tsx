@@ -14,6 +14,7 @@ type StackNavigationProps = {
   // signIn: undefined
   stackHome: undefined
   allMoviesSection: { title: string; url: string }
+  movieInfos: undefined
 }
 
 export type StackType = NativeStackNavigationProp<StackNavigationProps>
@@ -27,6 +28,7 @@ export const StackNavigation = () => {
       <Screen name="stackHome" component={TabNavigation} />
       <Screen name="movieScreen" component={MovieInfos} />
       <Screen name="allMoviesSection" component={AllMovieSection} />
+      <Screen name="movieInfos" component={MovieInfos} />
     </Navigator>
   )
 }

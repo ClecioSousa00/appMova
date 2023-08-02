@@ -1,14 +1,24 @@
 import { RFValue } from 'react-native-responsive-fontsize'
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import { AntDesign } from '@expo/vector-icons'
 
-export const PlayButton = styled.TouchableOpacity`
+export type ButtonPlayProps = {
+  variant?: boolean
+}
+
+export const PlayButton = styled.TouchableOpacity<ButtonPlayProps>`
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 7px 18px;
   border-radius: 30px;
   background-color: ${({ theme }) => theme.COLORS.SECONDARY};
+  ${({ variant }) =>
+    variant &&
+    css`
+      width: 175px;
+    `};
 `
 export const IconPlay = styled(AntDesign)`
   font-size: ${RFValue(15)}px;
