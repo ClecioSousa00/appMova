@@ -5,7 +5,7 @@ export const Container = styled.View`
   flex-direction: row;
   align-items: center;
   gap: 12px;
-  margin: 30px 0 50px;
+  margin: 30px 20px 50px 0;
 `
 
 export const ContentImage = styled.View`
@@ -20,7 +20,9 @@ export const ImageProfile = styled.Image`
   width: 100%;
 `
 
-export const ContentText = styled.View``
+export const ContentText = styled.View`
+  max-width: 100px;
+`
 
 export const Name = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.BOLD};

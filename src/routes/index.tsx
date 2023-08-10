@@ -32,6 +32,9 @@ export const Routes = () => {
     return <Splash />
   }
 
+  const uid = user.uid
+  console.log('dados do user?', uid)
+
   return (
     <NavigationContainer>
       {user ? <StackNavigation /> : <StackAuthNavigation />}

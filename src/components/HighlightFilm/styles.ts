@@ -25,7 +25,7 @@ export const Logo = styled.Image`
 
 export const IconsContainer = styled.View`
   flex-direction: row;
-  gap: 20px;
+  gap: 40px;
 `
 export const ButtonSearch = styled.Pressable``
 

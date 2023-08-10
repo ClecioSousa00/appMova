@@ -1,6 +1,8 @@
 import styled from 'styled-components/native'
-import { Feather } from '@expo/vector-icons'
+import { Feather, FontAwesome5 } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { FlatList, FlatListProps } from 'react-native'
+import { CastProps } from '../../types/castTypes'
 
 export const Container = styled.View`
   flex: 1;
@@ -18,6 +20,10 @@ export const ButtonBack = styled.TouchableOpacity``
 export const Icon = styled(Feather)`
   /* font-size: ${RFValue(24)}px; */
   color: ${({ theme }) => theme.COLORS.LIGHT};
+`
+export const IconStar = styled(FontAwesome5)`
+  /* font-size: ${RFValue(24)}px; */
+  color: ${({ theme }) => theme.COLORS.SECONDARY};
 `
 export const IconInfos = styled(Feather)`
   /* font-size: ${RFValue(24)}px; */
@@ -41,6 +47,7 @@ export const TitleMovie = styled.Text`
 export const ContentSubtitle = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 26px;
 `
 export const ContentInfosSubtitle = styled.View`
   flex-direction: row;
@@ -51,13 +58,14 @@ export const infosSubtitle = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.SECONDARY};
   font-size: ${RFValue(12)}px;
+  margin-right: 8px;
 `
 
 export const ContainerButtons = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  margin-top: 24px;
+  margin-top: 26px;
   gap: 8px;
 `
 export const GenresList = styled.View`
@@ -70,3 +78,7 @@ export const Description = styled.Text`
   margin-top: 20px;
   text-align: justify;
 `
+
+export const CastList = styled(
+  FlatList as new (props: FlatListProps<CastProps>) => FlatList<CastProps>,
+)``

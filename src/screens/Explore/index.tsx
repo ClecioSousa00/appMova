@@ -37,7 +37,7 @@ export const Explore = () => {
     setIsLoading((old) => !old)
 
     try {
-      const dataSearch = await getData(`search/multi?query=${search}`)
+      const dataSearch = await getData(`search/movie?query=${search}`)
       setData(dataSearch!)
       setEmptyData(false)
       // if (dataSearch![0].id) {

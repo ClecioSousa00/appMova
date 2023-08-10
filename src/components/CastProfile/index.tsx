@@ -1,23 +1,32 @@
 import * as S from './styles'
 
+import { CastProps } from '../../types/castTypes'
+
+import imageUserEmpty from '../../assets/userNull.png'
+
 type CastProfileProps = {
-  gender: number
-  name: string
-  profile_path: string
+  data: CastProps
 }
 
-export const CastProfile = () => {
-  const url = 'https://image.tmdb.org/t/p/w500/2mfJILwVGr4RBha3OihQVfq5nyL.jpg'
-
+export const CastProfile = ({ data }: CastProfileProps) => {
+  const { name = 'Não informado', character = 'Não informado' } = data
   return (
     <S.Container>
       <S.ContentImage>
-        <S.ImageProfile source={{ uri: url }} />
+        <S.ImageProfile
+          source={
+            data.profile_path
+              ? {
+                  uri: `https://image.tmdb.org/t/p/w500${data.profile_path}`,
+                }
+              : imageUserEmpty
+          }
+        />
       </S.ContentImage>
 
       <S.ContentText>
-        <S.Name>James Cameron</S.Name>
-        <S.ActingName>ator</S.ActingName>
+        <S.Name>{name}</S.Name>
+        <S.ActingName>{character}</S.ActingName>
       </S.ContentText>
     </S.Container>
   )

@@ -10,3 +10,4 @@ export const button = styled.TouchableOpacity`
   height: 40px;
   background-color: red;
 `
+export const Text = styled.Text``

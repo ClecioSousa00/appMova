@@ -5,10 +5,10 @@ import { HighlightFilm } from '../../components/HighlightFilm'
 
 import { SectionMovie } from '../../components/SectionMovie'
 import { useAxiosHome } from '../../hooks/useGetMoviesHome'
+import { useAsyncStorage } from '../../hooks/useAsyncStorage'
 
 export const Home = () => {
   const { dataPlayingMovies, dataUpcomingMovies, loading } = useAxiosHome()
-
   if (loading) {
     console.log('splash da home')
 
@@ -17,7 +17,13 @@ export const Home = () => {
   // Math.floor(Math.random() * dataPlayingMovies.length - 1)
   return (
     <S.ContainerView>
-      <HighlightFilm data={dataPlayingMovies[0]} />
+      <HighlightFilm
+        data={
+          dataPlayingMovies[
+            Math.floor(Math.random() * dataPlayingMovies.length - 1)
+          ]
+        }
+      />
       <S.ScrollContainer>
         <SectionMovie
           title="Filmes em alta"

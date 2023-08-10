@@ -1,11 +1,15 @@
 import * as S from './styles'
-import logo from '../../assets/logo-Mova.png'
+import { useNavigation } from '@react-navigation/native'
+import { auth } from '../../services/firebaseConfig'
+import { signOut } from 'firebase/auth'
+
 import { ButtonPlay } from '../ButtonPlay'
 import { ButtonFavorite } from '../ButtonFavorites'
-
 import { DataMoviesProps } from '../../types/movieTypes'
-import { useNavigation } from '@react-navigation/native'
 import { TabTypes } from '../../routes'
+import { MovieBanner } from '../MovieBanner'
+
+import logo from '../../assets/logo-Mova.png'
 
 type HighlightFilmProps = {
   data: DataMoviesProps
@@ -15,30 +19,69 @@ export const HighlightFilm = ({ data }: HighlightFilmProps) => {
   const navigation = useNavigation<TabTypes>()
 
   return (
-    <S.Background
-      source={{
-        uri: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
-      }}
-      imageStyle={{ resizeMode: 'cover' }}
-    >
-      <S.HighlightFilm colors={['rgba(24, 26, 32, 0)', '#181a20']}>
-        <S.Header>
-          <S.Logo source={logo} />
-          <S.IconsContainer>
-            <S.ButtonSearch onPress={() => navigation.navigate('explore')}>
-              <S.Icon name="search" />
-            </S.ButtonSearch>
-            <S.Icon name="bell" />
-          </S.IconsContainer>
-        </S.Header>
-        <S.InfosMovie>
-          <S.TitleMovie>{data.title}</S.TitleMovie>
-          <S.ContainerButtons>
-            <ButtonPlay />
-            <ButtonFavorite />
-          </S.ContainerButtons>
-        </S.InfosMovie>
-      </S.HighlightFilm>
-    </S.Background>
+    <MovieBanner urlImage={data.poster_path}>
+      <S.Header>
+        <S.Logo source={logo} />
+        <S.IconsContainer>
+          <S.ButtonSearch onPress={() => navigation.navigate('explore')}>
+            <S.Icon name="search" />
+          </S.ButtonSearch>
+          <S.ButtonSearch onPress={() => signOut(auth)}>
+            <S.Icon name="log-out" />
+          </S.ButtonSearch>
+        </S.IconsContainer>
+      </S.Header>
+      <S.InfosMovie>
+        <S.TitleMovie>{data.title}</S.TitleMovie>
+        <S.ContainerButtons>
+          <ButtonPlay />
+          <ButtonFavorite data={data} />
+        </S.ContainerButtons>
+      </S.InfosMovie>
+    </MovieBanner>
   )
 }
+// import * as S from './styles'
+// import logo from '../../assets/logo-Mova.png'
+// import { ButtonPlay } from '../ButtonPlay'
+// import { ButtonFavorite } from '../ButtonFavorites'
+
+// import { DataMoviesProps } from '../../types/movieTypes'
+// import { useNavigation } from '@react-navigation/native'
+// import { TabTypes } from '../../routes'
+
+// type HighlightFilmProps = {
+//   data: DataMoviesProps
+// }
+
+// export const HighlightFilm = ({ data }: HighlightFilmProps) => {
+//   const navigation = useNavigation<TabTypes>()
+
+//   return (
+//     <S.Background
+//       source={{
+//         uri: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
+//       }}
+//       imageStyle={{ resizeMode: 'cover' }}
+//     >
+//       <S.HighlightFilm colors={['rgba(24, 26, 32, 0)', '#181a20']}>
+//         <S.Header>
+//           <S.Logo source={logo} />
+//           <S.IconsContainer>
+//             <S.ButtonSearch onPress={() => navigation.navigate('explore')}>
+//               <S.Icon name="search" />
+//             </S.ButtonSearch>
+//             <S.Icon name="log-out" />
+//           </S.IconsContainer>
+//         </S.Header>
+//         <S.InfosMovie>
+//           <S.TitleMovie>{data.title}</S.TitleMovie>
+//           <S.ContainerButtons>
+//             <ButtonPlay />
+//             <ButtonFavorite />
+//           </S.ContainerButtons>
+//         </S.InfosMovie>
+//       </S.HighlightFilm>
+//     </S.Background>
+//   )
+// }
