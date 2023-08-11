@@ -1,11 +1,15 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { StackNavigation } from './stack.routes'
-import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { useEffect, useState } from 'react'
+
 import firebase from 'firebase/app'
 import { auth } from '../services/firebaseConfig'
-import { StackAuthNavigation } from './authRoutes'
 import { onAuthStateChanged } from 'firebase/auth'
+
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
+import { NavigationContainer } from '@react-navigation/native'
+
+import { StackNavigation } from './stack.routes'
+import { StackAuthNavigation } from './authRoutes'
+
 import { Splash } from '../screens/Splash'
 
 type TabNavigationProps = {
@@ -32,21 +36,9 @@ export const Routes = () => {
     return <Splash />
   }
 
-  const uid = user.uid
-  console.log('dados do user?', uid)
-
   return (
     <NavigationContainer>
       {user ? <StackNavigation /> : <StackAuthNavigation />}
     </NavigationContainer>
   )
 }
-
-// import { auth } from '../services/firebaseConfig'
-// import { onAuthStateChanged } from 'firebase/auth'
-
-// const [user, setUser] = useState()
-//   useEffect(() => {
-//     const subscriber = onAuthStateChanged(auth, setUser)
-//     return subscriber
-//   }, [])

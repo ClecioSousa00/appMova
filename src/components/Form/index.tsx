@@ -1,12 +1,17 @@
 import * as S from './styles'
+
+import { useState } from 'react'
+
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-// import { Keyboard, TouchableWithoutFeedback } from 'react-native'
+
 import { InputLogin } from './InputLogin'
-import logo from '../../assets/logo-Mova.png'
-import { useState } from 'react'
 import { SignButton } from '../SignButton'
+
+import { useTheme } from 'styled-components'
+
+import logo from '../../assets/logo-Mova.png'
 
 const CreateUserSchema = z.object({
   email: z
@@ -34,9 +39,8 @@ export const Form = ({ loading, title, handleSign, textButton }: FormProps) => {
   } = useForm<CreateUserSchemaProps>({
     resolver: zodResolver(CreateUserSchema),
   })
-
+  const theme = useTheme()
   const [hidePassword, setHidePassword] = useState(true)
-  console.log('error da senha', errors.password)
 
   return (
     <S.Container>
@@ -72,25 +76,12 @@ export const Form = ({ loading, title, handleSign, textButton }: FormProps) => {
         loading={loading}
         style={{
           shadowOffset: { width: -2, height: 4 },
-          shadowColor: '#E21221',
+          shadowColor: theme.COLORS.SECONDARY,
           shadowOpacity: 0.9,
           shadowRadius: 3,
           elevation: 9,
         }}
       />
-      {/* <S.Button
-        style={{
-          shadowOffset: { width: -2, height: 4 },
-          shadowColor: '#E21221',
-          shadowOpacity: 0.9,
-          shadowRadius: 3,
-          elevation: 9,
-        }}
-        activeOpacity={0.5}
-        onPress={handleSubmit(handleSign)}
-      >
-        <S.TextButton>{textButton}</S.TextButton>
-      </S.Button> */}
     </S.Container>
   )
 }

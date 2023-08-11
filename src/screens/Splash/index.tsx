@@ -1,6 +1,6 @@
 import * as S from './styles'
-import logo from '../../assets/logo-Mova.png'
 import { LoadingAnimation } from '../../components/LoadingAnimation'
+import logo from '../../assets/logo-Mova.png'
 
 export const Splash = () => {
   return (

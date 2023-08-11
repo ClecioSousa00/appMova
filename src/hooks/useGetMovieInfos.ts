@@ -8,29 +8,36 @@ export const useGetMovieInfos = (id: number) => {
   const [dataMovie, setDataMovie] = useState<DataMoviesProps>(
     {} as DataMoviesProps,
   )
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getDataMovie()
   }, [])
 
   const getDataMovie = async () => {
-    const [movieInfos, castList] = await Promise.all([getMovie(), getCast()])
-    setDataMovie({
-      id: movieInfos.id,
-      title: movieInfos.title,
-      poster_path: movieInfos.poster_path,
-      vote_average: movieInfos.vote_average,
-      overview: movieInfos.overview,
-      release_date: movieInfos.release_date,
-      genres: movieInfos.genres,
-    })
-    const dataCastList = castList.map((cast) => ({
-      id: cast.id,
-      name: cast.name,
-      character: cast.character,
-      profile_path: cast.profile_path,
-    }))
-    setDataCast(dataCastList)
+    try {
+      const [movieInfos, castList] = await Promise.all([getMovie(), getCast()])
+      setDataMovie({
+        id: movieInfos.id,
+        title: movieInfos.title,
+        poster_path: movieInfos.poster_path,
+        vote_average: movieInfos.vote_average,
+        overview: movieInfos.overview,
+        release_date: movieInfos.release_date,
+        genres: movieInfos.genres,
+      })
+      const dataCastList = castList.map((cast) => ({
+        id: cast.id,
+        name: cast.name,
+        character: cast.character,
+        profile_path: cast.profile_path,
+      }))
+      setDataCast(dataCastList)
+    } catch (error) {
+      console.log('erro ao pegar of filmes e elenco', error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const getCast = async () => {
@@ -46,33 +53,6 @@ export const useGetMovieInfos = (id: number) => {
   return {
     dataMovie,
     dataCast,
+    isLoading,
   }
 }
-// import { useEffect, useState } from 'react'
-// import { axiosInstance } from '../services/api/axiosInstance'
-// import { CastProps } from '../types/castTypes'
-
-// export const useGetCast = (id: number) => {
-//   const [dataCast, setDataCast] = useState<CastProps[]>([])
-
-//   useEffect(() => {
-//     getCast()
-//   }, [])
-
-//   const getCast = async () => {
-//     const response = await axiosInstance.get(`/movie/${id}/credits`)
-//     const data: CastProps = response.data.cast
-//     setDataCast([
-//       {
-//         id: data.id,
-//         name: data.name,
-//         character: data.character,
-//         profile_path: data.profile_path,
-//       },
-//     ])
-//   }
-
-//   return {
-//     dataCast,
-//   }
-// }

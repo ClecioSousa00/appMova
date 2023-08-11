@@ -21,10 +21,27 @@ export const useAsyncStorage = () => {
   //   removeItem()
   // }, [])
 
-  // const removeItem = async () => {
-  //   const a = getUserKey()
-  //   await AsyncStorage.removeItem(a!)
-  // }
+  const removeItem = async (removeMovie: DataMoviesProps) => {
+    const moviesFavorites = await getAsyncStorage()
+    if (!moviesFavorites) return
+
+    const newMoviesFavorites = moviesFavorites.filter(
+      (movie) => movie.id !== removeMovie.id,
+    )
+    await setAllMoviesFavorites(newMoviesFavorites)
+  }
+  const setAllMoviesFavorites = async (
+    newMoviesFavorites: DataMoviesProps[],
+  ) => {
+    const key = getUserKey()
+    if (!key) return
+    try {
+      await AsyncStorage.setItem(key!, JSON.stringify(newMoviesFavorites))
+    } catch (error) {
+      console.log('erro no setAsyncStorage de remover item', error)
+      Alert.alert('Não foi possível adicionar ao favoritos')
+    }
+  }
 
   const setAsyncStorage = async (newMovie: DataMoviesProps) => {
     const key = getUserKey()
@@ -65,5 +82,6 @@ export const useAsyncStorage = () => {
   return {
     setAsyncStorage,
     getAsyncStorage,
+    removeItem,
   }
 }

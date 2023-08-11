@@ -1,7 +1,9 @@
 import * as S from './styles'
+
 import { TouchableOpacityProps, ActivityIndicator } from 'react-native'
 
 import { useTheme } from 'styled-components'
+
 type SignButtonProps = {
   text: string
   loading?: boolean

@@ -1,8 +1,11 @@
-import { useNavigation } from '@react-navigation/native'
-import { DataMoviesProps } from '../../types/movieTypes'
-import { CardMovie } from '../CardMovie'
 import * as S from './styles'
+
+import { useNavigation } from '@react-navigation/native'
+
+import { DataMoviesProps } from '../../types/movieTypes'
 import { StackType } from '../../routes/stack.routes'
+
+import { CardMovie } from '../CardMovie'
 
 type SectionMovieProps = {
   title?: string

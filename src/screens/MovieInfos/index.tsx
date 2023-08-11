@@ -1,39 +1,89 @@
 import * as S from './styles'
+
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native'
+import { useState, useCallback } from 'react'
+
+import { FontAwesome5, MaterialIcons } from '@expo/vector-icons'
+import { useTheme } from 'styled-components'
+
+import { useGetMovieInfos } from '../../hooks/useGetMovieInfos'
+import { useAsyncStorage } from '../../hooks/useAsyncStorage'
+
 import { MovieBanner } from '../../components/MovieBanner'
-import { useNavigation, useRoute } from '@react-navigation/native'
 import { ButtonPlay } from '../../components/ButtonPlay'
 import { ButtonDownload } from '../../components/ButtonDownload'
 import { CastProfile } from '../../components/CastProfile'
-import { useGetMovieInfos } from '../../hooks/useGetMovieInfos'
-
-// const urlImage =
-//   'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg'
+import { LoadingAnimation } from '../../components/LoadingAnimation'
 
 type ParamsProps = {
   id: number
 }
 
 export const MovieInfos = () => {
+  const theme = useTheme()
+  const { setAsyncStorage, getAsyncStorage, removeItem } = useAsyncStorage()
+  const [favoriteIsSelected, setFavoriteIsSelected] = useState(false)
   const navigation = useNavigation()
   const route = useRoute()
   const { id } = route.params as ParamsProps
-  // const { data } = useGetMovie(id)
 
-  const { dataMovie, dataCast } = useGetMovieInfos(id)
+  const { dataMovie, dataCast, isLoading } = useGetMovieInfos(id)
 
-  if (!dataMovie.id || !dataCast.length) return
-  console.log('dados do filme', dataMovie)
-  console.log('===========================================')
-  console.log('dados do cast', dataCast)
+  const handleMovieFavorite = async () => {
+    if (!favoriteIsSelected) {
+      await setAsyncStorage(dataMovie)
+      setFavoriteIsSelected(true)
+      return
+    }
+
+    await removeItem(dataMovie)
+    setFavoriteIsSelected(false)
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      if (!dataMovie.id || !dataCast.length) return
+      movieIsFavorite()
+    }, [isLoading]),
+  )
+
+  const movieIsFavorite = async () => {
+    const moviesFavoritesList = await getAsyncStorage()
+    if (!moviesFavoritesList) return
+
+    const movieIsFavorite = moviesFavoritesList.some(
+      (movie) => movie.id === dataMovie.id,
+    )
+    if (movieIsFavorite) {
+      setFavoriteIsSelected(true)
+    }
+  }
+  if (isLoading) {
+    return (
+      <S.ContainerLoading>
+        <LoadingAnimation />
+      </S.ContainerLoading>
+    )
+  }
 
   return (
     <S.Container>
       <MovieBanner urlImage={dataMovie.poster_path}>
         <S.IconsContainer>
-          <S.ButtonBack onPress={() => navigation.goBack()}>
-            <S.Icon name="arrow-left" size={24} />
-          </S.ButtonBack>
-          <S.Icon name="cast" size={24} />
+          <S.ButtonIcon onPress={() => navigation.goBack()}>
+            {/* <S.Icon name="arrow-left" size={24} /> */}
+            <MaterialIcons
+              name="arrow-back"
+              size={24}
+              color={theme.COLORS.LIGHT}
+            />
+          </S.ButtonIcon>
+          {/* <S.Icon name="cast" size={24} /> */}
+          <MaterialIcons name="cast" size={24} color={theme.COLORS.LIGHT} />
         </S.IconsContainer>
       </MovieBanner>
       <S.ContainerInfos>
@@ -41,7 +91,12 @@ export const MovieInfos = () => {
 
         <S.ContentSubtitle>
           <S.ContentInfosSubtitle>
-            <S.IconStar name="star-half-alt" size={16} />
+            {/* <S.IconStar name="star-half-alt" size={16} /> */}
+            <FontAwesome5
+              name="star-half-alt"
+              size={16}
+              color={theme.COLORS.SECONDARY}
+            />
             <S.infosSubtitle>
               {dataMovie.vote_average.toFixed(1)}
             </S.infosSubtitle>
@@ -50,8 +105,14 @@ export const MovieInfos = () => {
             </S.infosSubtitle>
           </S.ContentInfosSubtitle>
           <S.IconsContainer>
-            <S.IconInfos name="heart" size={20} />
-            <S.IconInfos name="navigation" size={20} />
+            <S.ButtonIcon onPress={() => handleMovieFavorite()}>
+              {favoriteIsSelected ? (
+                <S.IconInfos name="favorite" />
+              ) : (
+                <S.IconInfos name="favorite-outline" />
+              )}
+            </S.ButtonIcon>
+            <S.IconInfos name="share" />
           </S.IconsContainer>
         </S.ContentSubtitle>
         <S.ContainerButtons>

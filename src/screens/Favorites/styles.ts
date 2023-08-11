@@ -1,8 +1,12 @@
 import styled from 'styled-components/native'
+import { DataMoviesProps } from '../../types/movieTypes'
+import { FlatList, FlatListProps } from 'react-native'
 
 export const Container = styled.View`
   flex: 1;
-  justify-content: center;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  padding: 60px 24px 0;
+  align-items: center;
 `
 
 export const button = styled.TouchableOpacity`
@@ -11,3 +15,9 @@ export const button = styled.TouchableOpacity`
   background-color: red;
 `
 export const Text = styled.Text``
+
+export const ListMovie = styled(
+  FlatList as new (
+    props: FlatListProps<DataMoviesProps>,
+  ) => FlatList<DataMoviesProps>,
+)``

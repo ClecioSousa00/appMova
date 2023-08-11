@@ -35,6 +35,7 @@ export const Text = styled.Text`
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   font-size: ${RFValue(14)}px;
   color: ${({ theme }) => theme.COLORS.INACTIVE};
+  text-align: center;
   margin-bottom: 20px;
 `
 

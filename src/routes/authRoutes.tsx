@@ -7,6 +7,7 @@ import { GetStarted } from '../screens/GetStarted'
 import { SignUp } from '../screens/SignUp'
 import { SignIn } from '../screens/SignIn'
 import { ForgotPassword } from '../screens/ForgotPassword'
+
 const { Screen, Navigator } = createNativeStackNavigator()
 
 type StackNavigationProps = {

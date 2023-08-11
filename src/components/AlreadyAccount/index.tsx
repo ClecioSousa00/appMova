@@ -1,6 +1,8 @@
-import { useNavigation } from '@react-navigation/native'
 import * as S from './styles'
-import { StackType } from '../../routes/stack.routes'
+
+import { useNavigation } from '@react-navigation/native'
+
+import { StackAuthType } from '../../routes/authRoutes'
 
 type AlreadyAccountProps = {
   text: string
@@ -13,7 +15,7 @@ export const AlreadyAccount = ({
   buttonText,
   routeName,
 }: AlreadyAccountProps) => {
-  const navigation = useNavigation<StackType>()
+  const navigation = useNavigation<StackAuthType>()
   const handleNavigate = () => {
     if (routeName === 'signUp') {
       navigation.navigate('signUp')

@@ -1,4 +1,5 @@
 import * as S from './styles'
+
 import { useNavigation } from '@react-navigation/native'
 
 import { DataMoviesProps } from '../../types/movieTypes'

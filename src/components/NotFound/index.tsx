@@ -1,5 +1,6 @@
 import * as S from './styles'
 import ImageNotfound from '../../assets/notfound.svg'
+
 export const NotFound = () => {
   return (
     <S.ContainerEmpty>

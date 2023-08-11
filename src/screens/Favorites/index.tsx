@@ -1,26 +1,17 @@
-// import * as S from './styles'
-// import { auth } from '../../services/firebaseConfig'
-// import { signOut } from 'firebase/auth'
-// export const Favorites = () => {
-//   const handleSignOut = () => {
-//     signOut(auth)
-//   }
-
-//   return (
-//     <S.Container>
-//       <S.button onPress={handleSignOut} />
-//     </S.Container>
-//   )
-// }
 import * as S from './styles'
 
-import { useCallback, useEffect, useState } from 'react'
-import { useAsyncStorage } from '../../hooks/useAsyncStorage'
+import { useCallback, useState } from 'react'
+import { View } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
+import { useAsyncStorage } from '../../hooks/useAsyncStorage'
+
 import { DataMoviesProps } from '../../types/movieTypes'
+
 import { LoadingAnimation } from '../../components/LoadingAnimation'
 import { CardMovie } from '../../components/CardMovie'
+import { FavoritesHeader } from '../../components/FavoritesHeader'
+import { MessageEmptyFavorites } from '../../components/MessageEmptyFavorites'
 
 export const Favorites = () => {
   const { getAsyncStorage } = useAsyncStorage()
@@ -28,11 +19,6 @@ export const Favorites = () => {
   const [moviesFavoritesList, setMoviesFavoritesList] = useState<
     DataMoviesProps[]
   >([])
-
-  // useEffect(() => {
-
-  //   loadMovies()
-  // }, [])
 
   useFocusEffect(
     useCallback(() => {
@@ -46,12 +32,6 @@ export const Favorites = () => {
     setIsLoading(false)
   }
 
-  const generateMoviesList = () => {
-    return moviesFavoritesList.map((movie) => (
-      <CardMovie key={movie.id} data={movie} />
-    ))
-  }
-
   if (isLoading) {
     return (
       <S.Container>
@@ -62,11 +42,20 @@ export const Favorites = () => {
 
   return (
     <S.Container>
-      {moviesFavoritesList.length ? (
-        generateMoviesList()
-      ) : (
-        <S.Text>Lista vazia</S.Text>
+      <FavoritesHeader />
+
+      {moviesFavoritesList.length > 0 && (
+        <S.ListMovie
+          data={moviesFavoritesList}
+          keyExtractor={(item) => String(item.id)}
+          ItemSeparatorComponent={() => <View style={{ marginBottom: 10 }} />}
+          renderItem={({ item }) => <CardMovie data={item} />}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+        />
       )}
+
+      {moviesFavoritesList.length === 0 && <MessageEmptyFavorites />}
     </S.Container>
   )
 }

@@ -1,7 +1,9 @@
-import { ReactNode } from 'react'
 import * as S from './styles'
 
+import { ReactNode } from 'react'
+
 import { TextInputProps } from 'react-native'
+
 import { Control, Controller } from 'react-hook-form'
 
 type InputLoginProps = {

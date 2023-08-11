@@ -1,8 +1,12 @@
 import * as S from './styles'
-import bgGetStarted from '../../assets/bg-getStarted.png'
+
 import { useNavigation } from '@react-navigation/native'
+
 import { StackAuthType } from '../../routes/authRoutes'
 import { SignButton } from '../../components/SignButton'
+
+import bgGetStarted from '../../assets/bg-getStarted.png'
+
 export const GetStarted = () => {
   const navigation = useNavigation<StackAuthType>()
   return (

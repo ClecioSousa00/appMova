@@ -1,7 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
 import { Home } from '../screens/Home'
 import { Favorites } from '../screens/Favorites'
 import { Explore } from '../screens/Explore'
+
 import { useTheme } from 'styled-components'
 
 import { Feather, Ionicons } from '@expo/vector-icons'

@@ -1,15 +1,24 @@
 import * as S from './styles'
-import logo from '../../assets/logo-Mova.png'
+
+import { useState } from 'react'
+
+import { auth } from '../../services/firebaseConfig'
+import { sendPasswordResetEmail } from 'firebase/auth'
+
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { InputLogin } from '../../components/Form/InputLogin'
-import { auth } from '../../services/firebaseConfig'
-import { sendPasswordResetEmail } from 'firebase/auth'
+
 import { useNavigation } from '@react-navigation/native'
 import { StackAuthType } from '../../routes/authRoutes'
-import { useState } from 'react'
+
+import { InputLogin } from '../../components/Form/InputLogin'
 import { SignButton } from '../../components/SignButton'
+
+import { useTheme } from 'styled-components'
+import { MaterialIcons } from '@expo/vector-icons'
+
+import logo from '../../assets/logo-Mova.png'
 
 const ForgotPasswordSchema = z.object({
   email: z
@@ -21,6 +30,7 @@ type ForgotPasswordSchemaProps = z.infer<typeof ForgotPasswordSchema>
 
 export const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const theme = useTheme()
   const navigation = useNavigation<StackAuthType>()
 
   const {
@@ -45,7 +55,8 @@ export const ForgotPassword = () => {
   return (
     <S.Container>
       <S.ButtonBack onPress={() => navigation.navigate('signIn')}>
-        <S.IconBack name="arrowleft" />
+        {/* <S.IconBack name="arrowleft" /> */}
+        <MaterialIcons name="arrow-back" size={24} color={theme.COLORS.TEXT} />
       </S.ButtonBack>
       <S.Logo source={logo} />
       <S.Title>Recuperar Senha</S.Title>
@@ -59,7 +70,8 @@ export const ForgotPassword = () => {
         error={errors.email && errors.email?.message}
         placeholder="Email"
       >
-        <S.Icon name="email" />
+        {/* <S.Icon name="email" /> */}
+        <MaterialIcons name="email" size={18} color={theme.COLORS.INACTIVE} />
       </InputLogin>
       <SignButton
         text="Enviar E-mail"
@@ -67,15 +79,12 @@ export const ForgotPassword = () => {
         loading={isLoading}
         style={{
           shadowOffset: { width: -2, height: 4 },
-          shadowColor: '#E21221',
+          shadowColor: theme.COLORS.SECONDARY,
           shadowOpacity: 0.9,
           shadowRadius: 3,
           elevation: 9,
         }}
       />
-      {/* <S.Button onPress={handleSubmit(handleForgotPassword)}>
-        <S.TextButton>Enviar E-mail</S.TextButton>
-      </S.Button> */}
     </S.Container>
   )
 }

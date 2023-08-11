@@ -1,9 +1,11 @@
-import { DataMoviesProps } from '../../types/movieTypes'
-import { CardMovie } from '../CardMovie'
-import { ListRenderItemInfo, View } from 'react-native'
 import * as S from './styles'
+
+import { ListRenderItemInfo, View } from 'react-native'
+
+import { DataMoviesProps } from '../../types/movieTypes'
+
+import { CardMovie } from '../CardMovie'
 import { LoadingAnimation } from '../LoadingAnimation'
-// import { useCallback } from 'react'
 
 type MoviesListProps = {
   data: DataMoviesProps[]
@@ -11,10 +13,6 @@ type MoviesListProps = {
 }
 
 export const MoviesList = ({ getMoreMovies, data }: MoviesListProps) => {
-  // const renderItem = useCallback(
-  //   ({ item }: { item: DataMoviesProps }) => <CardMovie data={item} />,
-  //   [],
-  // )
   function renderItem({ item }: ListRenderItemInfo<DataMoviesProps>) {
     return <CardMovie data={item} />
   }

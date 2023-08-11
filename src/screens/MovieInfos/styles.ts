@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { Feather, FontAwesome5 } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { FlatList, FlatListProps } from 'react-native'
 import { CastProps } from '../../types/castTypes'
@@ -8,6 +8,12 @@ export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
 `
+export const ContainerLoading = styled.View`
+  flex: 1;
+  background-color: ${({ theme }) => theme.COLORS.BACKGROUND};
+  justify-content: center;
+  align-items: center;
+`
 
 export const IconsContainer = styled.View`
   flex-direction: row;
@@ -15,19 +21,11 @@ export const IconsContainer = styled.View`
   align-items: center;
   gap: 16px;
 `
-export const ButtonBack = styled.TouchableOpacity``
+export const ButtonIcon = styled.TouchableOpacity``
 
-export const Icon = styled(Feather)`
-  /* font-size: ${RFValue(24)}px; */
-  color: ${({ theme }) => theme.COLORS.LIGHT};
-`
-export const IconStar = styled(FontAwesome5)`
-  /* font-size: ${RFValue(24)}px; */
-  color: ${({ theme }) => theme.COLORS.SECONDARY};
-`
-export const IconInfos = styled(Feather)`
-  /* font-size: ${RFValue(24)}px; */
+export const IconInfos = styled(MaterialIcons)`
   color: ${({ theme }) => theme.COLORS.TEXT};
+  font-size: 20px;
 `
 
 export const ContainerInfos = styled.ScrollView`
