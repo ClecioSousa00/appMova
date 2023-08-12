@@ -23,7 +23,7 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={deviceTheme ? theme[deviceTheme] : theme.dark}>
-      <StatusBar style="light" backgroundColor="transparent" translucent />
+      <StatusBar style="auto" backgroundColor="transparent" translucent />
       <SafeAreaView style={{ flex: 1 }}>
         <Routes />
       </SafeAreaView>

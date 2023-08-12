@@ -2,8 +2,6 @@ import * as S from './styles'
 import LottieView from 'lottie-react-native'
 
 export const LoadingAnimation = () => {
-  console.log('loading')
-
   return (
     <S.Container>
       <LottieView

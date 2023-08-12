@@ -1,6 +1,6 @@
 import * as S from './styles'
-import { View, Keyboard } from 'react-native'
-import { useState } from 'react'
+import { View, Keyboard, TouchableWithoutFeedback } from 'react-native'
+import React, { useState } from 'react'
 
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
@@ -14,11 +14,10 @@ import { CardMovie } from '../../components/CardMovie'
 import { InputLogin } from '../../components/Form/InputLogin'
 import { LoadingAnimation } from '../../components/LoadingAnimation'
 import { NotFound } from '../../components/NotFound'
+import { MessageSearchMovie } from '../../components/MessageSearchMovie'
 
 const SearchSchema = z.object({
-  search: z
-    .string({ required_error: 'Filme ou série não informado' })
-    .min(1, 'Informe um filme ou Série'),
+  search: z.string({ required_error: 'Filme não informado' }),
 })
 export type SearchSchemaProps = z.infer<typeof SearchSchema>
 export const Explore = () => {
@@ -32,20 +31,24 @@ export const Explore = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<DataMoviesProps[]>([])
   const [emptyData, setEmptyData] = useState(false)
+  const [screenMessage, setScreenMessage] = useState(true)
 
   const handleSearch = async ({ search }: SearchSchemaProps) => {
     Keyboard.dismiss()
     if (textSearch === search) return
-
+    setScreenMessage(false)
     setIsLoading((old) => !old)
 
     try {
       const dataSearch = await getData(`search/movie?query=${search}`)
+      if (dataSearch?.length === 0) {
+        throw new Error()
+      }
       setData(dataSearch!)
       setEmptyData(false)
     } catch (error) {
       setEmptyData(true)
-      console.log('erro na request')
+      console.log('filme não encontrado')
     }
 
     setTextSearch(search)
@@ -53,34 +56,40 @@ export const Explore = () => {
   }
 
   return (
-    <S.Container>
-      <InputLogin
-        control={control}
-        name="search"
-        placeholder="Buscar"
-        error={errors.search && errors.search?.message}
-      >
-        <S.ButtonSearch onPress={handleSubmit(handleSearch)}>
-          <S.Icon name="search" />
-        </S.ButtonSearch>
-      </InputLogin>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <S.Container>
+        <InputLogin
+          control={control}
+          name="search"
+          placeholder="Buscar"
+          error={errors.search && errors.search?.message}
+        >
+          <S.ButtonSearch onPress={handleSubmit(handleSearch)}>
+            <S.Icon name="search" />
+          </S.ButtonSearch>
+        </InputLogin>
 
-      {emptyData ? (
-        <NotFound />
-      ) : isLoading ? (
-        <LoadingAnimation />
-      ) : (
-        data.length > 0 && (
-          <S.ListMovie
-            data={data}
-            keyExtractor={(item) => String(item.id)}
-            ItemSeparatorComponent={() => <View style={{ marginBottom: 10 }} />}
-            renderItem={({ item }) => <CardMovie data={item} />}
-            numColumns={2}
-            showsVerticalScrollIndicator={false}
-          />
-        )
-      )}
-    </S.Container>
+        {screenMessage && <MessageSearchMovie />}
+
+        {emptyData ? (
+          <NotFound />
+        ) : isLoading ? (
+          <LoadingAnimation />
+        ) : (
+          data.length > 0 && (
+            <S.ListMovie
+              data={data}
+              keyExtractor={(item) => String(item.id)}
+              ItemSeparatorComponent={() => (
+                <View style={{ marginBottom: 10 }} />
+              )}
+              renderItem={({ item }) => <CardMovie data={item} />}
+              numColumns={2}
+              showsVerticalScrollIndicator={false}
+            />
+          )
+        )}
+      </S.Container>
+    </TouchableWithoutFeedback>
   )
 }

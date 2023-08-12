@@ -24,7 +24,7 @@ export const IconsContainer = styled.View`
 export const ButtonIcon = styled.TouchableOpacity``
 
 export const IconInfos = styled(MaterialIcons)`
-  color: ${({ theme }) => theme.COLORS.TEXT};
+  color: ${({ theme }) => theme.COLORS.SECONDARY};
   font-size: 20px;
 `
 

@@ -5,6 +5,8 @@ export const useGetData = () => {
   const getData = async (url: string) => {
     try {
       const response = await axiosInstance.get(url)
+      console.log(response.status)
+
       const data: DataMoviesProps[] = response.data.results.map(
         (item: DataMoviesProps) => ({
           id: item.id,
@@ -15,6 +17,7 @@ export const useGetData = () => {
           release_date: item.release_date,
         }),
       )
+
       return data
     } catch (error) {
       console.log('Erro na request a API', error)
