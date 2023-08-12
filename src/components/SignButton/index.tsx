@@ -11,6 +11,7 @@ type SignButtonProps = {
 
 export const SignButton = ({ loading, text, ...props }: SignButtonProps) => {
   const theme = useTheme()
+  console.log('load do button', loading)
 
   return (
     <S.Button disabled={loading} activeOpacity={0.7} {...props}>

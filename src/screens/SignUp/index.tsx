@@ -29,7 +29,9 @@ export const SignUp = () => {
         const errorMessage = error.message
         console.log('erro ao criar conta do usuário ', errorMessage)
       })
-    setIsLoading(false)
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   return (

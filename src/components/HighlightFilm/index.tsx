@@ -20,7 +20,7 @@ type HighlightFilmProps = {
 export const HighlightFilm = ({ data }: HighlightFilmProps) => {
   const navigation = useNavigation<TabTypes>()
 
-  if (!data.id) return
+  // if (!data.id) return
 
   return (
     <MovieBanner urlImage={data.poster_path}>

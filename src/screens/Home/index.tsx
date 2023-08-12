@@ -1,16 +1,24 @@
 import * as S from './styles'
 
-import { Splash } from '../Splash'
 import { HighlightFilm } from '../../components/HighlightFilm'
 import { SectionMovie } from '../../components/SectionMovie'
 
 import { useAxiosHome } from '../../hooks/useGetMoviesHome'
 
+import React from 'react'
+import { SkeletonMovieSection } from '../../components/Skeletons/SkeletonMovieSection'
+import { SkeletonBanner } from '../../components/Skeletons/SkeletonBanner'
+
 export const Home = () => {
   const { dataPlayingMovies, dataUpcomingMovies, loading } = useAxiosHome()
 
   if (loading) {
-    return <Splash />
+    return (
+      <S.ContainerView>
+        <SkeletonBanner />
+        <SkeletonMovieSection />
+      </S.ContainerView>
+    )
   }
 
   return (

@@ -1,10 +1,12 @@
 import * as S from './styles'
 
+import { TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
+
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../services/firebaseConfig'
 
 import React, { useState } from 'react'
-import { TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
+
 import { useNavigation } from '@react-navigation/native'
 
 import { AlreadyAccount } from '../../components/AlreadyAccount'
@@ -35,7 +37,9 @@ export const SignIn = () => {
         const errorMessage = error.message
         console.log('erro ao fazer login', errorMessage)
       })
-    setIsLoading(false)
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   return (
