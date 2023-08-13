@@ -59,3 +59,26 @@ Este Projeto é um aplicativo de filmes que ultiliza a base de dados da api do [
 
 ![Group 21](https://github.com/ClecioSousa00/appMova/assets/123471873/5b94f953-60db-43a2-bafe-09098f6fbef2)
 
+## Instalação
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+Você também deve ter suas Api Keys. Vá ao arquivo .env.example e obtenha as keys
+
+```bash
+# Clone este repositório
+$ git clone https://github.com/ClecioSousa00/appMova.git
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd appMova
+
+# Instale as dependências
+$ npm install
+
+# Execute a aplicação em modo de desenvolvimento
+$ npx expo start
+
+
+
