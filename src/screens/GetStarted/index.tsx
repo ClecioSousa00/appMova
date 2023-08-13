@@ -32,6 +32,10 @@ export const GetStarted = () => {
           text="Iniciar"
           onPress={() => navigation.navigate('signIn')}
         />
+        <S.TextFooter>
+          Desenvolvido por Clécio Sousa{'\n'}
+          versão 1.0.0
+        </S.TextFooter>
       </S.Container>
     </S.ImageBackground>
   )

@@ -11,7 +11,7 @@ export const Container = styled(LinearGradient)`
   align-items: center;
   justify-content: flex-end;
   gap: 24px;
-  padding: 0 24px 36px;
+  padding: 0 24px 10px;
 `
 
 export const Title = styled.Text`
@@ -45,4 +45,10 @@ export const Circle = styled.View`
   height: 8px;
   width: 8px;
   border-radius: 100px;
+`
+export const TextFooter = styled.Text`
+  font-family: ${({ theme }) => theme.FONTS.MEDIUM};
+  font-size: ${RFValue(10)}px;
+  color: ${({ theme }) => theme.COLORS.LIGHT};
+  text-align: center;
 `

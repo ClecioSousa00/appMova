@@ -32,7 +32,7 @@ export const Routes = () => {
   }, [])
 
   if (loading) {
-    console.log('splash das rotas')
+    
     return <Splash />
   }
 
