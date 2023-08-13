@@ -8,7 +8,6 @@ import {
 } from '@expo-google-fonts/urbanist'
 import theme from './src/theme'
 import { Routes } from './src/routes'
-// import React from 'react'
 
 export default function App() {
   const deviceTheme = useColorScheme()
@@ -17,7 +16,6 @@ export default function App() {
     Urbanist_700Bold,
   })
 
-  // const userTheme = deviceTheme ? theme[deviceTheme] : theme.dark
   if (!fonts) {
     return
   }
