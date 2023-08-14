@@ -35,11 +35,13 @@ Este Projeto é um aplicativo de filmes que ultiliza a base de dados da api do [
 
 * Recuperar Senha: Caso o usuário perca a sua senha ele pode informar o seu email que foi cadastrado no aplicativo assim ele receberá um email para criar uma nova senha. Este serviço é oferecido pelo firebase.
 
-![forgoat (1)](https://github.com/ClecioSousa00/appMova/assets/123471873/d9e40679-5bcc-4f45-864a-5461d646ba9f)
+![Group 20](https://github.com/ClecioSousa00/appMova/assets/123471873/c2ea209a-fe96-4547-b89f-c84c345efff1)
+
 
 * Home: Aqui fica os filmes que estão marcados como populares e lançamentos no TMDB.
 
-![WhatsApp Image 2023-08-12 at 20 41 1 (1)](https://github.com/ClecioSousa00/appMova/assets/123471873/8715c900-33c2-48f3-8048-35f4eacbb181)
+![Group 22](https://github.com/ClecioSousa00/appMova/assets/123471873/05569380-0b96-43d0-8f64-76f5ff115d64)
+
 
 * Listagem de filmes: Ao selecionar ver mais em uma das seções uma lista de filmes com scroll infinito.
 
@@ -55,5 +57,28 @@ Este Projeto é um aplicativo de filmes que ultiliza a base de dados da api do [
 
 * Favoritos: Ao selecionar um filme como favorito ele fica armazenado no AsyncStorage, desta forma ficando salvo mesmo que o usuário faça logout do aplicativo.
 
-![Group 18](https://github.com/ClecioSousa00/appMova/assets/123471873/0c3aaf81-1af8-4be3-b564-af92b4d0ec55)
+![Group 21](https://github.com/ClecioSousa00/appMova/assets/123471873/5b94f953-60db-43a2-bafe-09098f6fbef2)
+
+## Instalação
+
+### Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
+Você também deve ter suas Api Keys. Vá ao arquivo .env.example e obtenha as keys
+
+```bash
+# Clone este repositório
+$ git clone https://github.com/ClecioSousa00/appMova.git
+
+# Acesse a pasta do projeto no terminal/cmd
+$ cd appMova
+
+# Instale as dependências
+$ npm install
+
+# Execute a aplicação em modo de desenvolvimento
+$ npx expo start
+
+
 
