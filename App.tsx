@@ -1,5 +1,8 @@
+import 'react-native-gesture-handler'
+
 import { ThemeProvider } from 'styled-components/native'
 import { StatusBar } from 'expo-status-bar'
+
 import { SafeAreaView, useColorScheme } from 'react-native'
 import {
   useFonts,
@@ -22,6 +25,7 @@ export default function App() {
   return (
     <ThemeProvider theme={deviceTheme ? theme[deviceTheme] : theme.dark}>
       <StatusBar style="auto" backgroundColor="transparent" translucent />
+
       <SafeAreaView style={{ flex: 1 }}>
         <Routes />
       </SafeAreaView>
