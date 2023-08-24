@@ -20,6 +20,10 @@ export const Home = () => {
       </S.ContainerView>
     )
   }
+  console.log(
+    'NUMBER',
+    Math.floor(Math.random() * dataPlayingMovies.length - 1),
+  )
 
   return (
     <S.ContainerView>
